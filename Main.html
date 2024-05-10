@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Search</title>
+</head>
+<body>
+
+    <h1>Country Search</h1>
+
+    <!-- Search bar -->
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Search for a country...">
+        <button type="button" id="searchButton">Search</button>
+    </form>
+
+    <!-- Search results container -->
+    <div id="searchResults"></div>
+
+    <script>
+        // Function to filter country names based on search query
+        function filterCountryNames(query) {
+            const filteredQuery = query.toLowerCase();
+            // Sample list of country names
+            const countryNames = ["A", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria",
+                "Azerbaijan", "B", "Baden", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Bavaria", "Belarus", "Belgium", "Belize", "Benin (Dahomey)", "Bolivia", "Bosnia and Herzegovina", "Botswana",
+                "Brazil", "Brunei", "Brunswick and Lüneburg", "Bulgaria", "Burkina Faso Upper Volta", "Burma", "Burundi", "C", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Cayman Islands",
+                "Central African Republic", "Central American Federation", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo Free State", "Costa Rica", "Cote d’Ivoire (Ivory Coast)",
+                "Croatia", "Cuba", "Cyprus", "Czechia", "Czechoslovakia", "D", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Duchy of Parma",
+                "E", "East Germany (German Democratic Republic)", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "F",
+                "Federal Government of Germany (1848-49)", "Fiji", "Finland", "France", "G", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Grand Duchy of Tuscany", "Greece", "Grenada",
+                "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "H", "Haiti", "Hanover", "Hanseatic Republics", "Hawaii", "Hesse", "Holy See", "Honduras", "Hungary", "I", "Iceland", "India",
+                "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "J", "Jamaica", "Japan", "Jordan", "K", "Kazakhstan", "Kenya", "Kingdom of Serbia/Yugoslavia", "Kiribati", "Korea",
+                "Kosovo", "Kuwait", "Kyrgyzstan", "L", "Laos", "Latvia", "Lebanon", "Lesotho", "Lew Chew (Loochoo)", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "M",
+                "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mecklenburg-Schwerin", "Mecklenburg-Strelitz", "Mexico",
+                "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "N", "Namibia", "Nassau", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua",
+                "Niger", "Nigeria", "North German Confederation", "North German Union", "North Macedonia", "Norway", "O", "Oldenburg", "Oman", "Orange Free State", "P", "Pakistan", "Palau",
+                "Panama", "Papal States", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Piedmont-Sardinia", "Poland", "Portugal", "Q", "Qatar", "R", "Republic of Genoa",
+                "Republic of Korea (South Korea)", "Republic of the Congo", "Romania", "Russia", "Rwanda", "S", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines",
+                "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabi", "Schaumburg-Lippe", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia",
+                "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "T", "Tajikistan", "Tanzania", "Texas",
+                "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Two Sicilies*", "U", "Uganda", "Ukraine",
+                "Union of Soviet Socialist Republics", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "V", "Vanuatu", "Venezuela", "Vietnam", "W", "Württemberg", "Y",
+                "Yemen", "Z", "Zambia", "Zimbabwe"];
+            return countryNames.filter(name => name.toLowerCase().startsWith(filteredQuery));
+        }
+
+        // Function to update search results based on search query
+        function updateSearchResults() {
+            const query = document.getElementById("searchInput").value;
+            const filteredNames = filterCountryNames(query);
+            const resultHtml = filteredNames.map(name => `<div class="search-results-item">${name}</div>`).join("");
+            document.getElementById("searchResults").innerHTML = resultHtml;
+        }
+
+        // Attach event listener to search button for click event
+        document.getElementById("searchButton").addEventListener("click", updateSearchResults);
+
+        // Attach event listener to search input for keyup event
+        document.getElementById("searchInput").addEventListener("keyup", updateSearchResults);
+    </script>
+
+</body>
+</html>
